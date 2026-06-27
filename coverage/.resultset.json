@@ -1,0 +1,89 @@
+{
+  "Minitest": {
+    "coverage": {
+      "/home/tnks/workspace/blanket_store/app/models/product_color.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1
+        ]
+      },
+      "/home/tnks/workspace/blanket_store/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/tnks/workspace/blanket_store/app/models/product.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/tnks/workspace/blanket_store/app/models/variant.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1
+        ]
+      },
+      "/home/tnks/workspace/blanket_store/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/tnks/workspace/blanket_store/app/helpers/application_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/tnks/workspace/blanket_store/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/tnks/workspace/blanket_store/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1782601356
+  }
+}
