@@ -43,24 +43,37 @@
           1
         ]
       },
+      "/home/tnks/workspace/blanket_store/app/controllers/home_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
       "/home/tnks/workspace/blanket_store/app/controllers/application_controller.rb": {
         "lines": [
-          0,
+          1,
           null,
-          0,
+          1,
           null,
           null,
-          0,
-          0
-        ],
-        "branches": {}
+          1,
+          null
+        ]
       },
       "/home/tnks/workspace/blanket_store/app/helpers/application_helper.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {}
+          1,
+          null
+        ]
+      },
+      "/home/tnks/workspace/blanket_store/app/helpers/home_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
       },
       "/home/tnks/workspace/blanket_store/app/jobs/application_job.rb": {
         "lines": [
@@ -84,6 +97,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1782601356
+    "timestamp": 1782606751
   }
 }
