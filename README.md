@@ -2,7 +2,7 @@
 
 # 🛏️ Blanket Store
 
-![Coverage](https://img.shields.io/badge/coverage-100%25-success?style=flat-square)
+![Tests](https://img.shields.io/badge/tests-Minitest%20%7C%20SimpleCov-success?style=flat-square)
 ![Ruby Version](https://img.shields.io/badge/ruby-3.3+-red?style=flat-square)
 ![Rails Version](https://img.shields.io/badge/rails-8.1-blue?style=flat-square)
 
