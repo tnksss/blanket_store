@@ -1,72 +1,73 @@
 <div class="bg-gray-50 min-h-screen py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
+
     <div class="text-center mb-12">
       <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Coleção Premium</h1>
       <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">O conforto que a sua casa merece, tecido por especialistas.</p>
-    </div>
-
-    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+    </div> <div class="flex justify-center items-center gap-3 mb-12">
+      <span class="text-sm font-medium text-gray-500">Filtrar por:</span>
       
-      <% @products.each do |product| %>
-        <div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          
-          <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-            <% if product.category == "Cama" %>
-              <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="<%= product.name %>" class="w-full h-full object-center object-cover">
-            <% else %>
-              <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=600&q=80" alt="<%= product.name %>" class="w-full h-full object-center object-cover">
-            <% end %>
+      <a href="<%= root_path %>" 
+         class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= params[:category].blank? ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50' %>">
+        Todos
+      </a>
 
+      <% @categories.each do |category| %>
+        <a href="<%= root_path(category: category) %>" 
+           class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= params[:category] == category ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50' %>">
+          <%= category %>
+        </a>
+      <% end %>
+    </div>
+    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+
+      <% @products.each do |product| %>
+        <div data-controller="card-produto" class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        
+          <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96 relative">
+            <% first_color = product.product_colors.first %>
+            <% if first_color&.image_url.present? %>
+              <img data-card-produto-target="mainImage" src="<%= first_color.image_url %>" alt="<%= product.name %>" class="w-full h-full object-center object-cover">
+            <% else %>
+              <img data-card-produto-target="mainImage" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80" alt="Sem foto" class="w-full h-full object-center object-cover">
+            <% end %>
+        
             <% if product.tag.present? %>
               <span class="absolute top-4 left-4 bg-black text-white text-xs font-bold uppercase px-3 py-1 rounded-full">
                 <%= product.tag %>
               </span>
             <% end %>
-          </div>
-
-          <div class="flex-1 p-6 flex flex-col justify-between">
+          </div> <div class="flex-1 p-6 flex flex-col justify-between">
+            
             <div class="space-y-2">
               <p class="text-sm text-gray-400 uppercase tracking-wider"><%= product.category %></p>
               <h3 class="text-lg font-semibold text-gray-900">
-                <a href="#">
-                  <span class="absolute inset-0"></span>
-                  <%= product.name %>
+                <a href="<%= product_path(product) %>" class="hover:underline">                  <%= product.name %>
                 </a>
               </h3>
               <p class="text-sm text-gray-500 line-clamp-2"><%= product.description %></p>
-            </div>
-
-            <div class="mt-4">
-              <p class="text-xs font-medium text-gray-400">Cores disponíveis:</p>
-              <div class="flex items-center space-x-2 mt-1 z-10 relative">
+            </div> <div class="mt-4 z-20 relative">
+              <p class="text-xs font-medium text-gray-400 mb-1">Cores disponíveis (clique para alterar):</p>
+              <div class="flex flex-wrap gap-2">
                 <% product.product_colors.each do |color| %>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  <button data-action="click->card-produto#changeColor" data-image-url="<%= color.image_url %>"
+                          type="button" 
+                          class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer shadow-sm">
                     <%= color.color_name %>
-                  </span>
+                  </button>
                 <% end %>
               </div>
-            </div>
-
-            <div class="mt-6 flex items-center justify-between">
-              <% prices = product.product_colors.map { |c| c.variants.map(&:price) }.flatten.compact %>
-              <% if prices.any? %>
+            </div> <div class="mt-6 flex items-center justify-between z-20 relative">
+              <% if product.starting_price.present? %>
                 <p class="text-xl font-bold text-gray-900">
                   <span class="text-xs font-normal text-gray-400">A partir de</span>
-                  R$ <%= number_with_precision(prices.min, precision: 2, separator: ',') %>
+                  R$ <%= number_with_precision(product.starting_price, precision: 2, separator: ',') %>
                 </p>
               <% else %>
                 <p class="text-sm italic text-gray-400">Sob consulta</p>
               <% end %>
 
-              <span class="text-sm font-medium text-indigo-600 group-hover:text-indigo-500">Ver opções &rarr;</span>
-            </div>
-          </div>
-
-        </div>
-      <% end %>
-
-    </div>
-
-  </div>
-</div>
+              <a href="<%= product_path(product) %>" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 z-30 relative">
+                Ver opções &rarr; 
+              </a>
+            </div> </div> </div> <% end %> </div> </div> </div> ```

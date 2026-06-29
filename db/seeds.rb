@@ -16,9 +16,17 @@ edredom = Product.create!(
   tag: "Mais Vendido"
 )
 
-# Cores do Edredom
-cor_branco = ProductColor.create!(product: edredom, color_name: "Branco Hotel")
-cor_cinza  = ProductColor.create!(product: edredom, color_name: "Cinza Platinado")
+# Cores do Edredom (Com as novas URLs de imagens reais)
+cor_branco = ProductColor.create!(
+  product: edredom, 
+  color_name: "Branco Hotel",
+  image_url: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80"
+)
+cor_cinza  = ProductColor.create!(
+  product: edredom, 
+  color_name: "Cinza Platinado",
+  image_url: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"
+)
 
 # Variantes (Tamanho, Preço, Estoque) do Edredom Branco
 Variant.create!(product_color: cor_branco, size: "Casal", price: 299.90, stock: 10, sku: "EDR-BR-CAS")
@@ -39,9 +47,17 @@ toalhas = Product.create!(
   tag: "Lançamento"
 )
 
-# Cores da Toalha
-cor_oliva = ProductColor.create!(product: toalhas, color_name: "Verde Oliva")
-cor_rosa  = ProductColor.create!(product: toalhas, color_name: "Rosa Seco")
+# Cores da Toalha (Com as novas URLs de imagens reais)
+cor_oliva = ProductColor.create!(
+  product: toalhas, 
+  color_name: "Verde Oliva",
+  image_url: "https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=600&q=80"
+)
+cor_rosa  = ProductColor.create!(
+  product: toalhas, 
+  color_name: "Rosa Seco",
+  image_url: "https://images.unsplash.com/photo-1616627561950-9f746e330187?auto=format&fit=crop&w=600&q=80"
+)
 
 # Variantes da Toalha
 Variant.create!(product_color: cor_oliva, size: "Padrão (4 Peças)", price: 149.90, stock: 15, sku: "TOA-OL-PAD")

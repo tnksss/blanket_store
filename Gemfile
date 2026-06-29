@@ -65,3 +65,5 @@ group :test do
   gem "selenium-webdriver"
   gem "simplecov", require: false
 end
+
+gem "tailwindcss-rails", "~> 4.6"
